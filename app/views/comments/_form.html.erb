@@ -1,0 +1,18 @@
+<%= form_for([@bad,@bad.comments.build]) do |f| %>
+
+        
+
+    <div style="margin-left:12px">
+    <p style="margin:0px; font-size:18px">Name:</p>
+    <div style="margin-left:12px"><%= f.text_field :name %></div>
+    
+    
+    <p style="margin:0px; font-size:18px">Comment:</p>
+    <div style="margin-left:12px"><%= f.text_area :body, style: "width:300px; height:50px; border-radius:5px" %></div>
+
+    <%= f.text_field :email, value: current_user.email, type: :hidden %>
+    <div>
+        <%= f.submit "Send"%>
+    </div>
+    </div>
+<% end %>

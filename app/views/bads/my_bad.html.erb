@@ -1,0 +1,49 @@
+
+
+<head>
+<style>
+    .des{
+        margin-left: 20px;
+        margin-bottom: 5px;
+        width: 500px; 
+        height: 45px;
+        margin-top: 20px; 
+        border: 1px solid; 
+        border-radius: 8px;
+        padding: 5px;
+    }
+    
+</style>
+</head>
+
+
+<% if user_signed_in? %>
+
+<% @bad.each do |bad| %>
+    
+
+    <div style="margin-left:10px">
+    
+    <% if bad.user_id == current_user.id %>
+    <div>
+    <b><%= bad.title %></b>
+    </div>
+
+    <div class="des">
+    <%= truncate(bad.body, :length => 130) %>
+    </div>
+    
+    <button><%= link_to "Read more...", bad, style: "text-decoration:none; color:black" %></button>
+
+    
+    <button><%= link_to "Edit", edit_bad_path(bad), style: "text-decoration:none; color:black" %></button>
+    <br/><br/><hr/><br/>
+
+    <% end %>
+
+    <% end %>
+    </div>
+<% else %>
+    You have to sign in...
+
+<% end %>

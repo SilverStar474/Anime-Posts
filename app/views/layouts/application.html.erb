@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Animez Viewz</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <style>
+      *{
+        margin: 0%;
+      }
+      #nav{
+        border:2px solid; 
+        list-style-type:none; 
+        display: flex;
+        padding: 15px;
+        background-color: Pink;
+    }
+      .line{
+        background-color: black;
+        font-size: 15px;
+        border:1px solid;
+    }
+    body{
+      background-color: Lightcoral;
+    }
+    select{
+      color: white;
+    }
+    </style>
+  </head>
+
+  <body>
+
+  <ul id="nav">
+
+    <li style="margin-right:20px"><h2>Animez Viewz</h2></li>
+
+    <li class="line" style="margin-left: 20px"><button class="line"><%= link_to "Home", root_path, 
+            style: "text-decoration:none; color:white" %></button></li>
+
+    <li class="line" style="margin-left: 20px"><button class="line"><%= link_to "My Posts", my_bad_path, 
+            style: "text-decoration:none; color:white" %></button></li>
+
+    
+            
+<% if !user_signed_in? %>
+    <li class="line" style="margin-left: 20px"><button class="line"><%= link_to "Login", new_user_session_path, 
+            style: "text-decoration:none; color:white" %></button></li>
+    <li class="line" style="margin-left: 20px"><button class="line"><%= link_to "SignUp", new_user_registration_path, 
+            style: "text-decoration:none; color:white" %></button></li>
+    
+<% else %>
+    <li class="line" style="margin-left: 20px"><button class="line"><%= link_to "Profile", edit_user_registration_path, 
+            style: "text-decoration:none; color:white" %></button></li>
+    <li class="line" style="margin-left: 20px"><%= button_to "Logout", destroy_user_session_path, method: :delete, 
+            data: {turbo_confirm: "Are you sure?"}, style: "text-decoration:none; background-color: black; color:white; border:1px solid black" %></li>
+    <li class="line" style="margin-left: 20px"><button class="line"><%= link_to "Add Post", new_bad_path, 
+            style: "text-decoration:none; color:white" %></button></li>
+<% end %>
+    
+</ul>
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+      <form action="/" >
+      <select class="line" name="categories" style="border: 1px solid black">
+        
+        <option value="martialarts">Martial Arts</option>
+        <option value="superpower">Super Power</option>
+        <option value="ninja">Ninja</option>
+        <option value="fantasy">Fantasy</option>
+        <option value="others">Others</option>
+
+      </select>
+      <button type="submit">Search</button>
+      </form>
+      
+       <br/> 
+    <%= yield %>
+  </body>
+</html>

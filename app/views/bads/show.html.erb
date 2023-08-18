@@ -1,0 +1,70 @@
+<head>
+<style>
+    .des{
+        margin-bottom: 10px;
+        width: 800px;
+        border: 2px solid;
+        border-radius: 15px;
+        padding: 10px;
+    }
+    .comment{
+        border: 2px solid;
+        padding: 20px;
+        height: 250px;
+        border-radius: 15px;
+    }
+    .com{
+        border: 2px solid;
+        padding: 20px;
+        border-radius: 15px;
+        height: 250px;
+    }
+    .flow{
+        height: 200px;
+        overflow: auto;
+    }
+</style>
+</head>
+
+    
+    <h2><%= @bad.title %></h2><br/>
+
+    <ul style="display:flex; list-style-type:none; justify-content: space-between; width:1250px; margin:0px">
+        <li>
+            <div class="des">
+                <%= @bad.body %>
+            </div>
+
+            <ul style="display:flex; list-style-type:none; justify-content: space-between; width:160px; margin:0px">
+
+            <% if @bad.user == current_user %>
+
+                <li><button><%= link_to "Edit", edit_bad_path(@bad), style: "text-decoration:none; color:black" %></button></li>
+                <li><%= button_to "Delete", @bad, method: :delete, data: {turbo_confirm: "Are you sure?"} %></li>
+
+            <% end %>
+
+                <li><button><%= link_to "Back", root_path, style: "text-decoration:none; color:black" %></button></li>
+            </ul><br/>
+
+            <div class="com">
+
+            <h3><%= @bad.comments.count%> Comments::<hr/><br/></h3>
+            <div class="flow" ><%= render @bad.comments %></div>
+            
+            </div>
+
+        </li>
+    
+        <% if user_signed_in? %>
+            <li class="comment">
+            <h3>Add comments:</h3><hr/><br/>
+            <%= render "comments/form" %>
+            </li>
+        <% end %>
+    </ul>
+
+    
+
+    
+    

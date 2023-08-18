@@ -1,0 +1,56 @@
+<head>
+<style>
+    .des{
+        margin-left: 20px;
+        margin-bottom: 5px;
+        width: 500px; 
+        height: 45px;
+        margin-top: 20px; 
+        border: 1px solid; 
+        border-radius: 8px;
+        padding: 5px;
+    }
+    
+</style>
+</head>
+
+
+<% @bad.each do |bad| %>
+    <div style="margin-left:10px">
+    <div>
+    <b><%= bad.title %></b>
+    </div>
+
+    <div class="des">
+    <%= truncate(bad.body, :length => 130) %>
+    </div>
+    
+    <button><%= link_to "Read more...", bad, style: "text-decoration:none; color:black" %></button>
+
+    <% if bad.user == current_user %>
+    <button><%= link_to "Edit", edit_bad_path(bad), style: "text-decoration:none; color:black" %></button>
+    <% end %><br/><br/><hr/><br/>
+    </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

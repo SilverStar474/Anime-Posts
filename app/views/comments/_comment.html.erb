@@ -1,0 +1,9 @@
+<div><b>>><%= comment.name %></b></div>
+<p style="margin-left:20px; margin-top:5px"><%= comment.body %></p>
+
+
+<% if user_signed_in? %>
+<% if comment.email == current_user.email %>
+    <%= button_to "Delete", [comment.bad,comment], method: :delete, data: {turbo_confirm: "Are you sure?"} %>
+<% end %>  
+<% end %><br/>

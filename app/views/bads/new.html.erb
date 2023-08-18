@@ -1,0 +1,48 @@
+<head>
+<style>
+    *{
+        color: black;
+    }
+    
+</style>
+</head>
+<center>
+<div style="border: 2px solid; margin-top: 20px; width: 500px; height:250px; border-radius: 15px; padding: 10px">
+<%= form_with model: @bad do |f| %>
+
+
+        <% if f.object.errors.any? %>
+            <% f.object.errors.full_messages.each do |message| %>
+            <div><%= message %></div>
+            <% end %>
+        <% end %>
+
+    <div>
+        <h3>Title</h3>
+        <%= f.text_field :title %>
+    </div>
+    <br/>
+    <div>
+        <h3>Description</h3>
+        <%= f.text_area :body %>
+    </div>
+    <br/>
+    <div>
+        <h3>Category</h3>
+        <%= f.select(:categories, options_for_select([["Martial Arts","martialarts"],["Super Power","superpower"],["Ninja","ninja"],["Fantasy","fantasy"],["Others","others"]])) %>
+    </div>
+    <br/>
+    <div>
+        <%= f.number_field :user_id, id: :bad_user_id, value: current_user.id, type: :hidden %>
+    </div>
+    <br/>
+    <div>
+        <%= f.submit "Add New"%>
+    </div><br/>
+
+<% end %>
+    <button><%= link_to "Back", root_path, style: "text-decoration:none; color:black" %></button>
+</div>
+</center>
+
+ 
