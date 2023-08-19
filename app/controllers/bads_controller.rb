@@ -10,6 +10,7 @@ class BadsController < ApplicationController
         else
             @bad = Bad.all
         end
+       # render({json: @bad})
     end
 
     def my_bad
@@ -54,10 +55,10 @@ class BadsController < ApplicationController
         redirect_to root_path
     end
 
-    def correct_user
-        @bad = current_user.bads.find_by(id: params[:id])
-        redirect_to bads_path, notice: "Not an authorized user!" if @bad.nil?
-    end
+    # def correct_user
+    #     @bad = current_user.bads.find_by(id: params[:id])
+    #     redirect_to bads_path, notice: "Not an authorized user!" if @bad.nil?
+    # end
 
     private
     def req_params
